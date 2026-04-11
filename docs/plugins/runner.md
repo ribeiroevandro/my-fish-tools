@@ -6,6 +6,48 @@ Quick executor for npm/yarn/pnpm/bun scripts with interactive selection and TAB 
 
 The runner plugin (`r` and `run`) simplifies running package manager scripts in JavaScript/TypeScript projects. It provides both interactive and non-interactive modes, auto-detection of your project's package manager, and TAB completion support.
 
+## Installation
+
+### Install using a plugin manager
+
+If you use [Fisher](https://github.com/jorgebucaran/fisher) to manage your Fish plugins:
+
+```fish
+fisher install ribeiroevandro/my-fish-tools
+```
+
+If you use [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish) to manage your Fish plugins:
+
+```fish
+omf install https://github.com/ribeiroevandro/my-fish-tools
+```
+
+### Install manually
+
+If you prefer to install manually, copy the plugin files to your Fish config directory:
+
+**Copy method (recommended for updates from repo):**
+```bash
+git clone https://github.com/ribeiroevandro/my-fish-tools.git
+cp my-fish-tools/functions/r.fish ~/.config/fish/functions/
+cp my-fish-tools/functions/run.fish ~/.config/fish/functions/
+cp my-fish-tools/completions/r.fish ~/.config/fish/completions/
+```
+
+**Symlink method (for live updates from cloned repo):**
+```bash
+git clone https://github.com/ribeiroevandro/my-fish-tools.git
+ln -s $(pwd)/my-fish-tools/functions/r.fish ~/.config/fish/functions/r.fish
+ln -s $(pwd)/my-fish-tools/functions/run.fish ~/.config/fish/functions/run.fish
+ln -s $(pwd)/my-fish-tools/completions/r.fish ~/.config/fish/completions/r.fish
+```
+
+After installation, reload your Fish configuration:
+
+```fish
+source ~/.config/fish/config.fish
+```
+
 ## Location
 
 - `functions/r.fish` - Main runner function with script execution logic
