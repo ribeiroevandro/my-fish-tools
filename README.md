@@ -82,4 +82,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding new functions an
 
 ## License
 
-MIT
+[MIT License](./LICENSE)
