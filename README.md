@@ -8,14 +8,28 @@ A simple package of Fish shell utilities for JavaScript/TypeScript projects.
 
 ## Installation
 
-### Option 1: Copy (Simplest)
+### Option 1: Fisher (Recommended for plugin managers)
+If you use [Fisher](https://github.com/jorgebucaran/fisher) to manage your Fish plugins:
+
+```fish
+fisher install ribeiroevandro/my-fish-tools
+```
+
+### Option 2: Oh My Fish
+If you use [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish) to manage your Fish plugins:
+
+```fish
+omf install https://github.com/ribeiroevandro/my-fish-tools
+```
+
+### Option 3: Copy (Simplest manual installation)
 ```bash
 git clone https://github.com/ribeiroevandro/my-fish-tools.git
 cp my-fish-tools/functions/* ~/.config/fish/functions/
 cp my-fish-tools/completions/* ~/.config/fish/completions/
 ```
 
-### Option 2: Symlink (Live updates from repo)
+### Option 4: Symlink (For live updates from repo)
 ```bash
 git clone https://github.com/ribeiroevandro/my-fish-tools.git
 ln -s $(pwd)/my-fish-tools/functions/r.fish ~/.config/fish/functions/r.fish
@@ -23,17 +37,14 @@ ln -s $(pwd)/my-fish-tools/functions/run.fish ~/.config/fish/functions/run.fish
 ln -s $(pwd)/my-fish-tools/completions/r.fish ~/.config/fish/completions/r.fish
 ```
 
-### Option 3: Fisher
-```bash
-fisher install ribeiroevandro/my-fish-tools
-```
+### After installation
 
-## Usage
-
-After installation, restart Fish or source config:
+Restart Fish or reload your configuration:
 ```fish
 source ~/.config/fish/config.fish
 ```
+
+## Usage
 
 ### Runner (r command)
 ```fish
