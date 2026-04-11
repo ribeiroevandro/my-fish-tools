@@ -1,10 +1,10 @@
 # Runner Plugin Documentation
 
-Quick executor for npm/yarn/pnpm/bun scripts with interactive selection and TAB completion.
+Quick executor for npm/yarn/pnpm/bun scripts with interactive selection.
 
 ## Overview
 
-The runner plugin (`r` and `run`) simplifies running package manager scripts in JavaScript/TypeScript projects. It provides both interactive and non-interactive modes, auto-detection of your project's package manager, and TAB completion support.
+The runner plugin (`r` and `run`) simplifies running package manager scripts in JavaScript/TypeScript projects. It provides an interactive menu for script selection or direct script execution from the command line.
 
 ## Location
 
@@ -22,65 +22,61 @@ Automatically detects your project's package manager by checking for lockfiles:
 - Default → uses `npm`
 
 ### Interactive Mode
+Opens an interactive menu to select from available scripts in package.json:
 ```fish
-r   # Opens gum menu with available scripts
+r   # Opens menu to select a script
 ```
 - Requires: `gum`, `jq`
 - Select a script from the list
-- Press `q` or `Ctrl+C` to cancel
+- Press `q` or `Ctrl+C` to cancel without running anything
 
 ### Direct Execution
+Run a specific script directly without opening the menu:
 ```fish
 r dev                  # Run "dev" script
 r build                # Run "build" script
-r test -- --watch      # Pass arguments to script
-run lint               # Alias for r lint
+r test                 # Run "test" script
+run lint               # Using the 'run' alias
 ```
-- Requires: `jq` only
-- No interactive menu needed
+- Requires: `jq` only (gum not needed)
 - Useful for scripting and CI/CD
-
-### TAB Completion
-```fish
-r [TAB]   # Shows available scripts
-```
-- Press TAB after `r` to see available scripts
-- Requires: `gum`, `jq`
-
-### Argument Forwarding
-```fish
-r test -- --coverage --watch
-```
-- Arguments after `--` are forwarded to the script
-- Special handling for yarn (doesn't require `--`)
-- npm/pnpm/bun require `--` separator
+- Script must exist in package.json
 
 ## Usage Examples
 
 ### Basic Usage
 ```fish
-# Interactive selection
+# Open interactive menu to choose a script
 r
 
-# Run specific script
+# Run a specific script directly
 r dev
 r build
 r test
 r lint
 
-# Run with arguments
-r test -- --watch
-r build -- --minify --source-map
-
-# Using the alias
+# Using the 'run' alias
 run dev
 run lint
 ```
 
+### With Arguments
+To pass arguments to a script, use `--` as a separator:
+```fish
+r test -- --watch
+r build -- --minify --source-map
+```
+
+Special handling for different package managers:
+- **npm, pnpm, bun**: Require `--` separator
+  - Example: `r test -- --watch` → `npm run test -- --watch`
+- **yarn**: Does not require `--` separator
+  - Example: `r test --watch` → `yarn run test --watch`
+
 ### In Scripts and CI/CD
 ```bash
 #!/bin/bash
-# Non-interactive usage works without gum
+# Run a specific script without interactive mode
 fish -c "r build"
 fish -c "r test -- --coverage"
 ```
@@ -93,11 +89,13 @@ fish -c "r test -- --coverage"
   - Install: `brew install jq` (macOS) or `sudo apt install jq` (Linux)
 
 ### Optional (for interactive mode only)
-- **gum** - For interactive script selection
+- **gum** - For interactive script selection (only needed when running `r` without arguments)
   - Check: `gum --version`
   - Install: `brew install gum` (macOS) or `sudo apt install gum` (Linux)
 
 ### Project Requirements
+- `package.json` in current directory with `scripts` section
+- Corresponding package manager installed (npm, yarn, pnpm, or bun)
 - `package.json` in current directory with `scripts` section
 - Corresponding package manager installed (npm, yarn, pnpm, or bun)
 
