@@ -69,9 +69,15 @@ This package uses a flat directory structure that mirrors `~/.config/fish/`:
 my-fish-tools/
 ├── functions/      # Fish functions (install to ~/.config/fish/functions/)
 ├── completions/    # TAB completions (install to ~/.config/fish/completions/)
+├── docs/           # Plugin documentation
+│   └── PLUGINS.md  # Plugin guide and how to add new ones
 ├── README.md       # This file
 └── CONTRIBUTING.md # Contributing guidelines
 ```
+
+## Plugin Documentation
+
+For detailed information about the runner plugin and guidelines for adding new plugins, see [docs/PLUGINS.md](docs/PLUGINS.md).
 
 ## Contributing
 
