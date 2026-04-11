@@ -13,7 +13,6 @@ my-fish-tools/
 │   └── run.fish                   # Alias for r
 ├── completions/                   # TAB completions
 │   └── r.fish                     # Completions for r and run commands
-├── conf.d/                        # Optional config files (empty for now)
 ├── README.md                      # User documentation
 ├── CONTRIBUTING.md                # Development guidelines
 └── .gitignore                     # Git ignore patterns

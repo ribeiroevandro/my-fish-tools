@@ -1,6 +1,15 @@
 function __runner_list_scripts
     test -f package.json; or return 1
-    jq -r '(.scripts // {}) | keys[]' package.json 2>/dev/null
+    set -l scripts (jq -r '(.scripts // {}) | keys[]' package.json 2>/dev/null)
+    
+    # Check if jq succeeded
+    if test $status -ne 0
+        echo "Error: Failed to parse package.json" >&2
+        return 2
+    end
+    
+    # Output scripts (empty if none)
+    test -n "$scripts"; and printf "%s\n" $scripts
 end
 
 function __runner_detect_runner
@@ -16,13 +25,9 @@ function __runner_detect_runner
 end
 
 function r --description "Run a script in the current project"
-    # Check dependencies
+    # Check dependencies (jq is always needed)
     type -q jq; or begin
         echo "Error: jq is required. Install it with your system package manager (see README for platform-specific instructions)."
-        return 127
-    end
-    type -q gum; or begin
-        echo "Error: gum is required. Install it with your system package manager (see README for platform-specific instructions)."
         return 127
     end
 
@@ -42,9 +47,15 @@ function r --description "Run a script in the current project"
     
     set -l script_name $argv[1]
 
-    # r dev
+    # r dev (non-interactive, no gum needed)
     if test -n "$script_name"
-        set -l exists (jq -r --arg script_name "$script_name" '.scripts[$script_name] // empty' package.json)
+        set -l exists (jq -r --arg script_name "$script_name" '.scripts[$script_name] // empty' package.json 2>/dev/null)
+        
+        # Check if jq succeeded
+        if test $status -ne 0
+            echo "Error: Failed to parse package.json" >&2
+            return 2
+        end
 
         if test -z "$exists"
             echo "Script '$script_name' not found"
@@ -65,8 +76,18 @@ function r --description "Run a script in the current project"
         return
     end
 
-    # r -> gum choose
+    # r -> gum choose (interactive, needs gum)
+    type -q gum; or begin
+        echo "Error: gum is required for interactive mode. Install it with your system package manager (see README for platform-specific instructions)."
+        return 127
+    end
+
     set -l scripts (__runner_list_scripts)
+    
+    # Check for jq parse errors
+    if test $status -eq 2
+        return 2
+    end
 
     # Check if any scripts exist
     if test (count $scripts) -eq 0

@@ -69,7 +69,6 @@ This package uses a flat directory structure that mirrors `~/.config/fish/`:
 my-fish-tools/
 ├── functions/      # Fish functions (install to ~/.config/fish/functions/)
 ├── completions/    # TAB completions (install to ~/.config/fish/completions/)
-├── conf.d/         # Optional config files (install to ~/.config/fish/conf.d/)
 ├── README.md       # This file
 └── CONTRIBUTING.md # Contributing guidelines
 ```
