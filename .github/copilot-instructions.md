@@ -321,3 +321,30 @@ gh pr create \
   --title "feat(runner): add bun package manager support" \
   --body "Adds detection and support for bun as a package manager in the runner plugin.\n\nCloses #42"
 ```
+
+### Merging Pull Requests
+
+**Always use squash merge strategy** when merging PRs:
+
+```bash
+gh pr merge <pr_number> --squash --auto
+```
+
+**Why squash merge:**
+- Keeps main branch history clean and linear
+- Each PR becomes a single, logical commit
+- Easier to revert entire feature if needed
+- Prevents merge commits that clutter history
+- Aligns with atomic commit philosophy
+
+**Important:** Do not use merge commits or rebase merge. Squash is the only allowed merge strategy.
+
+**Alternative CLI approach:**
+```bash
+gh pr merge 42 --squash --delete-branch
+```
+
+This will:
+1. Squash all commits in the PR into one
+2. Merge to main with the PR title as commit message
+3. Delete the feature branch after merge
