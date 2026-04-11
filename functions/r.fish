@@ -44,7 +44,16 @@ function r --description "Run a script in the current project"
         end
 
         # Forward remaining arguments to the runner
-        $runner run $script_name $argv[2..-1]
+        # npm/pnpm/bun need -- separator; yarn doesn't
+        if test (count $argv) -gt 1
+            if test "$runner" = yarn
+                $runner run $script_name $argv[2..-1]
+            else
+                $runner run $script_name -- $argv[2..-1]
+            end
+        else
+            $runner run $script_name
+        end
         return
     end
 
