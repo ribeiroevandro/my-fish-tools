@@ -31,12 +31,12 @@ fisher install ribeiroevandro/my-fish-tools
 ## Usage
 
 After installation, restart Fish or source config:
-```bash
+```fish
 source ~/.config/fish/config.fish
 ```
 
 ### Runner (r command)
-```bash
+```fish
 r                # Interactive menu of scripts
 r dev           # Run specific script
 r build         # Another script

@@ -13,9 +13,9 @@ function my_function --description "What this does"
 end
 ```
 
-4. If you have helper functions, prefix with underscore:
+4. If you have helper functions, use the repository convention: double underscore plus plugin prefix:
 ```fish
-function _my_helper
+function __my_fish_tools_helper
     # Helper logic
 end
 ```
