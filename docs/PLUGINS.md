@@ -1,52 +1,28 @@
-# My Fish Tools - Plugin Documentation
+# My Fish Tools - Plugin Development Guide
 
-This document describes the plugins included in my-fish-tools and how to add new ones.
+This document describes the standards and best practices for creating plugins in my-fish-tools. For documentation of existing plugins, see [docs/plugins/index.md](plugins/index.md).
 
 ## Overview
 
 Plugins are organized as collections of related Fish functions and completions that provide specific functionality. Each plugin follows a consistent structure and naming convention to ensure clarity and avoid naming conflicts.
 
-## Current Plugins
+## Plugin Documentation Structure
 
-### Runner Plugin (`r` / `run`)
+Plugin-specific documentation belongs in separate files within the `docs/plugins/` directory:
 
-**Purpose**: Quick executor for npm/yarn/pnpm/bun scripts with interactive selection and TAB completion.
-
-**Location**:
-- `functions/r.fish` - Main runner function with script execution logic
-- `functions/run.fish` - Convenience alias for `r`
-- `completions/r.fish` - TAB completion handler
-
-**Features**:
-- **Auto-detection**: Detects the project's package manager (npm, yarn, pnpm, or bun) based on lockfiles
-- **Interactive mode**: `r` - Opens a gum-powered menu to select from available scripts
-- **Direct execution**: `r dev` - Runs a specific script without interactive selection
-- **Argument forwarding**: `r test -- --watch` - Passes additional arguments to the script
-- **TAB completion**: Press TAB after `r` to see available scripts
-- **Non-interactive fallback**: Works without gum when running scripts directly (e.g., `r dev`)
-
-**Usage**:
-```fish
-r                    # Interactive menu (requires gum)
-r dev                # Run "dev" script
-r build              # Run "build" script
-r test -- --watch    # Pass arguments to script
-run lint             # Alias for r lint
+```
+docs/
+├── PLUGINS.md              # This file - development guide
+├── PLUGIN_TEMPLATE.md      # Template for new plugins
+└── plugins/
+    ├── index.md            # Index of all plugins
+    ├── runner.md           # Runner plugin documentation
+    └── [future_plugin].md  # Future plugin docs
 ```
 
-**Dependencies**:
-- **jq** - For parsing package.json (required for all modes)
-- **gum** - For interactive mode (optional, only needed for menu selection)
-
-**Exit Codes**:
-- `0` - Success
-- `1` - User error (missing script, no package.json, no scripts)
-- `2` - Parse error (invalid package.json)
-- `127` - Missing dependency (jq, gum, or package manager)
-
-**Helper Functions**:
-- `__runner_list_scripts` - Extracts script names from package.json with error handling
-- `__runner_detect_runner` - Detects package manager from lockfiles
+**For documentation of existing plugins, refer to:**
+- [Runner Plugin](./plugins/runner.md) - Complete runner plugin documentation
+- [Plugins Index](./plugins/index.md) - List of all available plugins
 
 ---
 
@@ -176,31 +152,21 @@ complete -c plugin_name -f -a "(__plugin_name_complete_items)" -d "Description"
 
 ### Step 6: Document Your Plugin
 
-1. **Add to README.md** - Under "Contents" section:
+1. **Create plugin documentation** in `docs/plugins/[plugin_name].md`
+   - Use [PLUGIN_TEMPLATE.md](./PLUGIN_TEMPLATE.md) as your starting point
+   - Include overview, usage, requirements, exit codes, etc.
+   - Provide troubleshooting section
+
+2. **Update docs/plugins/index.md** 
+   - Add your plugin to the index
+   - Include quick summary and link to full documentation
+
+3. **Update README.md** - Under "Contents" section:
 ```markdown
 - **plugin_name** - Brief description of what it does
 ```
 
-2. **Add to PLUGINS.md** - Create a section like:
-```markdown
-### Plugin Name
-
-**Purpose**: Clear one-sentence description.
-
-**Location**: List of files
-
-**Features**: Bulleted list of capabilities
-
-**Usage**: Code examples
-
-**Dependencies**: List of required/optional tools
-
-**Exit Codes**: Table of exit codes
-
-**Helper Functions**: List if any
-```
-
-3. **Update CONTRIBUTING.md** - Add any plugin-specific guidelines
+4. **Update CONTRIBUTING.md** - Add any plugin-specific guidelines
 
 ### Step 7: Update copilot-instructions.md
 
@@ -210,7 +176,7 @@ Add your plugin to the "Current Plugins" section:
 ### Plugin Name
 - **Description**: What it does
 - **Files**: functions/plugin_name.fish, completions/plugin_name.fish
-- **Features**: List of capabilities
+- **Documentation**: See [docs/plugins/plugin_name.md](../docs/plugins/plugin_name.md)
 - **Dependencies**: Tools required
 ```
 
@@ -236,50 +202,20 @@ plugin_name --help
 
 ### Step 9: Commit and Create PR
 
-Follow CONTRIBUTING.md guidelines for commits. Reference the plugin documentation in your commit message.
+Follow [Git conventions](../.github/copilot-instructions.md#git-and-commit-conventions) and CONTRIBUTING.md guidelines. Reference the plugin documentation in your commit message.
 
 ---
 
-## Plugin Structure Example
+## Using PLUGIN_TEMPLATE.md
 
-Here's the complete structure for a new plugin:
+When creating a new plugin, start with the [PLUGIN_TEMPLATE.md](./PLUGIN_TEMPLATE.md) in this directory:
 
-```
-functions/
-├── new_plugin.fish           # Main command
-├── new_plugin_helper.fish    # Helper functions
-└── new_plugin_utils.fish     # (optional) Utility functions
+1. Copy the template file to `docs/plugins/[your_plugin_name].md`
+2. Replace all `[PLACEHOLDER]` sections with your plugin's information
+3. Follow the structure to ensure consistency with other plugins
+4. Reference the [runner plugin documentation](./plugins/runner.md) for a real-world example
 
-completions/
-└── new_plugin.fish           # TAB completions
-```
-
-**new_plugin.fish**:
-```fish
-function new_plugin --description "Description"
-    # Dependency checks
-    type -q jq; or begin
-        echo "Error: jq is required" >&2
-        return 127
-    end
-    
-    # Main logic
-    echo "Hello from new_plugin"
-end
-```
-
-**new_plugin_helper.fish**:
-```fish
-function __new_plugin_get_data
-    jq '.key' input.json
-end
-```
-
-**completions/new_plugin.fish**:
-```fish
-complete -c new_plugin -f -n "__fish_seen_subcommand_from option1" \
-    -a "value1" -d "Description"
-```
+The template includes all sections needed for comprehensive plugin documentation.
 
 ---
 

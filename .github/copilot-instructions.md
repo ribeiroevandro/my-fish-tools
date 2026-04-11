@@ -37,8 +37,9 @@ When adding a new plugin or feature to my-fish-tools, follow this process:
 
 #### 1. Documentation First (Recommended)
 - Review [docs/PLUGINS.md](../docs/PLUGINS.md) for comprehensive guidelines
+- Review [docs/plugins/runner.md](../docs/plugins/runner.md) as a real-world example
+- Copy [docs/PLUGIN_TEMPLATE.md](../docs/PLUGIN_TEMPLATE.md) as your starting point
 - Plan your plugin structure, naming conventions, and dependencies
-- Write documentation in PLUGINS.md before implementing code
 
 #### 2. Create Plugin Files
 - Main function: `functions/PLUGIN_NAME.fish`
@@ -66,19 +67,18 @@ When adding a new plugin or feature to my-fish-tools, follow this process:
 #### 6. Documentation Updates (Required)
 Update these files when adding a new plugin:
 
-**a) docs/PLUGINS.md**
-- Add plugin section under "Current Plugins"
-- Document purpose, location, features, usage, dependencies, exit codes
+**a) docs/plugins/[plugin_name].md**
+- Create plugin-specific documentation using [PLUGIN_TEMPLATE.md](../docs/PLUGIN_TEMPLATE.md)
+- Document purpose, location, features, usage, dependencies, exit codes, helpers
+- Add troubleshooting section
 
-**b) README.md**
+**b) docs/plugins/index.md**
+- Update the plugins index with your new plugin
+- Add a brief summary and link
+
+**c) README.md**
 - Add entry to "Contents" section
 - Update structure diagram if needed
-
-**c) CONTRIBUTING.md**
-- Add plugin-specific guidelines if applicable
-
-**d) .github/copilot-instructions.md** (this file)
-- Add plugin to "Current Plugins" section
 
 #### 7. Testing
 - Syntax check: `fish -n functions/plugin_name.fish`
@@ -150,7 +150,7 @@ command arg2    # Description
 - Document external dependencies (gum, jq, etc.)
 - Test with `fish -n filename.fish` for syntax
 - Test in actual Fish environment
-- Document in docs/PLUGINS.md and README.md
+- Document in docs/plugins/ directory and README.md
 - **Important**: This project uses `__` prefix for helpers (e.g., `__runner_list_scripts`), not single `_`
 
 ### Project-Specific Conventions
@@ -188,7 +188,10 @@ my_function --help                      # Test
 ## Related Files
 
 - **README.md** - User-facing documentation with installation instructions and usage examples
-- **docs/PLUGINS.md** - Complete plugin development guide and documentation standards
+- **docs/PLUGINS.md** - Plugin development guide and best practices
+- **docs/PLUGIN_TEMPLATE.md** - Template for new plugin documentation
+- **docs/plugins/index.md** - Index of all available plugins
+- **docs/plugins/runner.md** - Runner plugin documentation (example)
 - **CONTRIBUTING.md** - Developer guide for adding new functions and contributing
 
 ## Current Plugins
@@ -196,7 +199,7 @@ my_function --help                      # Test
 ### Runner (`r` and `run`)
 - **Description**: Quick executor for npm/yarn/pnpm/bun scripts
 - **Files**: `functions/r.fish`, `functions/run.fish`, `completions/r.fish`
-- **Documentation**: See [docs/PLUGINS.md](../docs/PLUGINS.md) - Runner Plugin section
+- **Documentation**: See [docs/plugins/runner.md](../docs/plugins/runner.md)
 - **Features**:
   - Auto-detect package manager
   - Execute specific script: `r dev`

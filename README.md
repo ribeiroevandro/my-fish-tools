@@ -77,7 +77,10 @@ my-fish-tools/
 
 ## Plugin Documentation
 
-For detailed information about the runner plugin and guidelines for adding new plugins, see [docs/PLUGINS.md](docs/PLUGINS.md).
+For detailed information about plugins in my-fish-tools:
+- **Plugin Index**: [docs/plugins/index.md](docs/plugins/index.md) - List of all available plugins
+- **Runner Plugin**: [docs/plugins/runner.md](docs/plugins/runner.md) - Complete runner plugin documentation
+- **Development Guide**: [docs/PLUGINS.md](docs/PLUGINS.md) - How to create new plugins and best practices
 
 ## Contributing
 
