@@ -298,3 +298,26 @@ Make separate commits rather than combining. For example:
 1. `feat(runner): add new detection method`
 2. `test(runner): add tests for new detection`
 3. `refactor(runner): simplify old detection`
+
+## Pull Request Conventions
+
+### Creating Pull Requests
+
+Prefer the short GitHub CLI command when opening PRs:
+
+```bash
+gh pr create --title "titulo da pr" --body "descrição da pr" --assignee @me
+```
+
+**Guidelines:**
+- Use `--base` and `--head` only when not obvious from current branch/default target
+- Keep titles concise and aligned with commit message format
+- Use the PR description to provide context and explain changes
+- Reference related issues when applicable (e.g., "Closes #123")
+
+**Example:**
+```bash
+gh pr create \
+  --title "feat(runner): add bun package manager support" \
+  --body "Adds detection and support for bun as a package manager in the runner plugin.\n\nCloses #42"
+```
