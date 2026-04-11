@@ -327,7 +327,7 @@ gh pr create \
 **Always use squash merge strategy** when merging PRs:
 
 ```bash
-gh pr merge <pr_number> --squash --auto
+gh pr merge <pr_number> --squash --delete-branch
 ```
 
 **Why squash merge:**
@@ -339,12 +339,16 @@ gh pr merge <pr_number> --squash --auto
 
 **Important:** Do not use merge commits or rebase merge. Squash is the only allowed merge strategy.
 
-**Alternative CLI approach:**
+**Command breakdown:**
+- `--squash` - Squash all commits in the PR into one
+- `--delete-branch` - Delete the feature branch after merge (both local and remote)
+
+**Example:**
 ```bash
-gh pr merge 42 --squash --delete-branch
+gh pr merge 3 --squash --delete-branch
 ```
 
 This will:
-1. Squash all commits in the PR into one
+1. Squash all commits into a single commit
 2. Merge to main with the PR title as commit message
 3. Delete the feature branch after merge
