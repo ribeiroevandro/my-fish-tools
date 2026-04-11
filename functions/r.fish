@@ -18,11 +18,11 @@ end
 function r --description "Run a script in the current project"
     # Check dependencies
     type -q jq; or begin
-        echo "Error: jq is required. Install with: brew install jq"
+        echo "Error: jq is required. Install it with your system package manager (see README for platform-specific instructions)."
         return 127
     end
     type -q gum; or begin
-        echo "Error: gum is required. Install with: brew install gum"
+        echo "Error: gum is required. Install it with your system package manager (see README for platform-specific instructions)."
         return 127
     end
 
@@ -31,12 +31,20 @@ function r --description "Run a script in the current project"
         return 1
     end
 
-    set runner (__runner_detect_runner)
-    set script_name $argv[1]
+    set -l runner (__runner_detect_runner)
+    
+    # Verify detected runner is installed
+    type -q $runner; or begin
+        echo "Error: detected package runner '$runner' is not installed or not in PATH"
+        echo "Install '$runner' or use the package manager that matches this project's lockfile"
+        return 127
+    end
+    
+    set -l script_name $argv[1]
 
     # r dev
     if test -n "$script_name"
-        set exists (jq -r --arg script_name "$script_name" '.scripts[$script_name] // empty' package.json)
+        set -l exists (jq -r --arg script_name "$script_name" '.scripts[$script_name] // empty' package.json)
 
         if test -z "$exists"
             echo "Script '$script_name' not found"
@@ -58,7 +66,7 @@ function r --description "Run a script in the current project"
     end
 
     # r -> gum choose
-    set scripts (__runner_list_scripts)
+    set -l scripts (__runner_list_scripts)
 
     # Check if any scripts exist
     if test (count $scripts) -eq 0
@@ -66,7 +74,13 @@ function r --description "Run a script in the current project"
         return 1
     end
 
-    set selected (printf "%s\n" $scripts | gum choose --header "Select script")
+    set -l selected (printf "%s\n" $scripts | gum choose --header "Select script")
+    set -l choose_status $status
+
+    # User cancelled selection or error; do not treat as error on cancel
+    if test $choose_status -ne 0
+        return 0
+    end
 
     if test -n "$selected"
         $runner run $selected
