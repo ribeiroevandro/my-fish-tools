@@ -8,7 +8,20 @@ function clone --description "Clone a git repository, optionally cd into it and 
     or return 2
 
     if set -q _flag_help; or test (count $argv) -eq 0
-        echo "Usage: clone <repository-url> [folder-name] [--enter|-C] [editor]"
+        echo "Usage: clone <url> [folder] [editor] [options]"
+        echo ""
+        echo "Arguments:"
+        echo "  url       Repository URL — git@ or https:// (required)"
+        echo "  folder    Target directory name (default: repo name)"
+        echo "  editor    Editor to open project after cloning"
+        echo ""
+        echo "Options:"
+        echo "  -C, --enter   cd into directory after cloning"
+        echo "  -h, --help    Show this help"
+        echo ""
+        echo "Examples:"
+        echo "  clone https://github.com/user/repo"
+        echo "  clone git@github.com:user/repo my-folder --enter code"
         return 0
     end
 
