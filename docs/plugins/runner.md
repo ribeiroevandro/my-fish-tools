@@ -98,8 +98,6 @@ fish -c "r test -- --coverage"
 ### Project Requirements
 - `package.json` in current directory with `scripts` section
 - Corresponding package manager installed (npm, yarn, pnpm, or bun)
-- `package.json` in current directory with `scripts` section
-- Corresponding package manager installed (npm, yarn, pnpm, or bun)
 
 ## Exit Codes
 
