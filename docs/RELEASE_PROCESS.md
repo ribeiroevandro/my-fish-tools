@@ -5,6 +5,7 @@ This document describes how to create and publish releases for the my-fish-tools
 ## Overview
 
 We use **Semantic Versioning** with the following approach:
+
 - **Git tags**: Annotated tags in the format `v1.0.0`
 - **CHANGELOG**: [Keep a Changelog](https://keepachangelog.com) format
 - **GitHub Releases**: Release notes on GitHub
@@ -45,16 +46,20 @@ Based on [Semantic Versioning](https://semver.org):
 #### Step 1: Update CHANGELOG.md
 
 1. Create new section for the version at the top:
+
    ```markdown
    ## [1.0.1] - 2026-04-20
 
    ### Added
+
    - New feature description
 
    ### Fixed
+
    - Bug fix description
 
    ### Changed
+
    - Change description
    ```
 
@@ -63,6 +68,7 @@ Based on [Semantic Versioning](https://semver.org):
 3. Ensure all changes are documented in the appropriate section (Added, Fixed, Changed, etc.)
 
 **Commit format**:
+
 ```bash
 git add CHANGELOG.md
 git commit -m "chore(release): prepare v1.0.1 changelog"
@@ -75,6 +81,7 @@ git tag -a v1.0.1 -m "Release v1.0.1: Bug fixes and documentation improvements"
 ```
 
 **Tag message format**:
+
 ```
 Release v1.0.1: [Brief description of release highlights]
 
@@ -85,6 +92,7 @@ Highlights:
 ```
 
 **Verify the tag**:
+
 ```bash
 git tag -l -n1 v1.0.1
 ```
@@ -96,6 +104,7 @@ git push origin v1.0.1
 ```
 
 **Verify on GitHub**:
+
 ```bash
 git ls-remote --tags origin | grep v1.0.1
 ```
@@ -103,6 +112,7 @@ git ls-remote --tags origin | grep v1.0.1
 #### Step 4: Create GitHub Release
 
 **Option A: Using GitHub CLI**
+
 ```bash
 gh release create v1.0.1 \
   --title "Release v1.0.1" \
@@ -110,6 +120,7 @@ gh release create v1.0.1 \
 ```
 
 **Option B: Manual (GitHub Web Interface)**
+
 1. Go to https://github.com/ribeiroevandro/my-fish-tools/releases
 2. Click "Draft a new release"
 3. Select tag: v1.0.1
@@ -179,19 +190,23 @@ Use these sections in CHANGELOG.md:
 ## [1.1.0] - 2026-05-01
 
 ### Added
+
 - New plugin: Database utilities (`db` command)
 - Helper functions for common DB operations
 - TAB completion for DB commands
 
 ### Changed
+
 - Improved error messages in Runner plugin
 - Updated documentation structure
 
 ### Fixed
+
 - Fix Clone plugin crash on invalid URLs
 - Fix Runner plugin timeout on large scripts
 
 ### Security
+
 - None reported
 ```
 
@@ -206,6 +221,7 @@ For future automation, consider:
 3. **Scripts**: Shell script to automate changelog generation from git log
 
 Example automated workflow:
+
 ```bash
 # Generate changelog from conventional commits
 git log v1.0.0..HEAD --oneline --grep="feat\|fix\|BREAKING" > /tmp/changelog_entries.txt
@@ -258,6 +274,7 @@ git push origin v1.0.1
 ## Best Practices
 
 ✅ **DO**
+
 - Use annotated tags (not lightweight)
 - Update CHANGELOG.md in the same commit as the tag
 - Use Conventional Commits in your PRs
@@ -266,6 +283,7 @@ git push origin v1.0.1
 - Write clear release notes
 
 ❌ **DON'T**
+
 - Create tags for every commit
 - Use tags with inconsistent formats
 - Skip CHANGELOG updates
@@ -277,15 +295,16 @@ git push origin v1.0.1
 
 ## Version History
 
-| Version | Date | Major Changes |
-|---------|------|---------------|
-| 1.0.0 | 2026-04-19 | Initial release with Runner and Clone plugins |
+| Version | Date       | Major Changes                                 |
+| ------- | ---------- | --------------------------------------------- |
+| 1.0.0   | 2026-04-19 | Initial release with Runner and Clone plugins |
 
 ---
 
 ## Questions?
 
 For more information:
+
 - See [CONTRIBUTING.md](../CONTRIBUTING.md) for contribution guidelines
 - See [CHANGELOG.md](../CHANGELOG.md) for version history
 - See [README.md](../README.md) for installation and usage

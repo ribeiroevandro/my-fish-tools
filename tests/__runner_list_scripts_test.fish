@@ -12,7 +12,7 @@ cd $test_dir
 
 # Test 1: Extracts scripts from valid package.json
 echo -n "Test 1 - Extract scripts from package.json: "
-echo '{"name":"test","scripts":{"build":"echo build","test":"echo test","dev":"echo dev"}}' > package.json
+echo '{"name":"test","scripts":{"build":"echo build","test":"echo test","dev":"echo dev"}}' >package.json
 set -l result (__runner_list_scripts)
 set -l script_count (count $result)
 if test $script_count -eq 3
@@ -51,7 +51,7 @@ end
 
 # Test 5: Handles package.json with no scripts
 echo -n "Test 5 - Handle package.json with empty scripts: "
-echo '{"name":"test","scripts":{}}' > package.json
+echo '{"name":"test","scripts":{}}' >package.json
 set -l result (__runner_list_scripts)
 set -l empty_count (count $result)
 if test $empty_count -eq 0
@@ -66,4 +66,3 @@ rm -rf $test_dir
 
 echo ""
 echo "All tests passed! ✓"
-

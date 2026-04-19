@@ -150,7 +150,7 @@ function plugin_name --description "Brief description of what it does"
 end
 ```
 
-### Helpers (__plugin_name_*.fish)
+### Helpers (\__plugin_name_\*.fish)
 
 Each helper in its own file. Must be small, focused, reusable:
 
@@ -195,6 +195,7 @@ Execute npm/yarn/pnpm/bun scripts interactively or directly.
 **Purpose**: Quick access to project scripts without remembering the package manager.
 
 **Files**:
+
 - `functions/r.fish` — Main executor
 - `functions/run.fish` — Thin wrapper (calls `r`)
 - `functions/__runner_detect_runner.fish` — Auto-detect package manager from lockfiles
@@ -203,16 +204,19 @@ Execute npm/yarn/pnpm/bun scripts interactively or directly.
 - `docs/plugins/runner.md` — Full documentation
 
 **Key Features**:
+
 - Auto-detects `pnpm-lock.yaml` → `pnpm`, `yarn.lock` → `yarn`, `bun.lockb` → `bun`, else `npm`
 - Interactive mode with `gum` (requires `gum`, `jq`)
 - Direct execution (requires only `jq`)
 - Argument forwarding (handles `yarn` not needing `--` separator)
 
 **Dependencies**:
+
 - `jq` (required) — JSON parsing
 - `gum` (optional) — Interactive menu
 
 **Anti-patterns**:
+
 - Don't assume package manager — always detect from lockfile
 - Don't fail if `gum` is missing and in non-interactive mode — that's OK
 - Don't forward `--` to yarn — yarn interprets flags directly
@@ -224,6 +228,7 @@ Interactive git clone with dynamic editor detection and optional auto-cd.
 **Purpose**: Clone a repo, cd into it, and open in your editor in one command.
 
 **Files**:
+
 - `functions/clone.fish` — Main entry point
 - `functions/__clone_known_editors.fish` — List of recognized editors
 - `functions/__clone_detect_editors.fish` — Detect installed editors (macOS, Linux, PATH)
@@ -233,6 +238,7 @@ Interactive git clone with dynamic editor detection and optional auto-cd.
 - `docs/plugins/clone.md` — Full documentation
 
 **Key Features**:
+
 - Dynamic editor detection (VS Code, Cursor, Sublime, Vim, Neovim, Emacs, etc.)
 - Auto-extract repository name (strips `.git` suffix)
 - Existing directory handling (offers `git pull` instead of error)
@@ -240,13 +246,16 @@ Interactive git clone with dynamic editor detection and optional auto-cd.
 - Argument flexibility (folder name OR editor can be in any order after URL)
 
 **Dependencies**:
+
 - `gum` (required) — Interactive UI
 
 **Supported Editors**:
+
 - GUI: code (VS Code), cursor, subl (Sublime), atom, zed, fleet, nova, idea (IntelliJ)
 - CLI: vim, nvim, emacs, nano
 
 **Anti-patterns**:
+
 - Don't assume editor is installed — always validate before use
 - Don't fail if no editors found — offer fallback
 - Don't cd into directory without confirmation (unless `-C` flag)
@@ -266,14 +275,14 @@ Interactive git clone with dynamic editor detection and optional auto-cd.
 
 ## Tech Stack
 
-| Component | Technology |
-|-----------|------------|
-| Language | Fish 3.1.0+ |
+| Component       | Technology                               |
+| --------------- | ---------------------------------------- |
+| Language        | Fish 3.1.0+                              |
 | Package Manager | Fisher (recommended), Oh My Fish, Manual |
-| Distribution | GitHub repository |
-| Documentation | Markdown (GitHub-flavored) |
-| Version Control | Git + Semantic Versioning |
-| Releases | GitHub Releases + git tags |
+| Distribution    | GitHub repository                        |
+| Documentation   | Markdown (GitHub-flavored)               |
+| Version Control | Git + Semantic Versioning                |
+| Releases        | GitHub Releases + git tags               |
 
 ---
 
@@ -445,6 +454,7 @@ All commits follow **Conventional Commits**:
 ```
 
 **Types**:
+
 - `feat` → MINOR version (new plugin/feature)
 - `fix` → PATCH version (bug fix)
 - `docs` → No version change
@@ -457,6 +467,7 @@ All commits follow **Conventional Commits**:
 **Scope** (optional): `runner`, `clone`, `completions`, `docs`, `core`
 
 **Examples**:
+
 ```
 feat(runner): add support for pnpm scripts
 fix(clone): handle URLs with special characters
@@ -491,10 +502,12 @@ Nothing — each plugin declares its own dependencies:
 ## Downlinks
 
 **Module-Specific Guidance**:
+
 - [functions/AGENTS.md](functions/AGENTS.md) — Plugin and helper development
 - [completions/AGENTS.md](completions/AGENTS.md) — TAB completion development
 
 **Project Documentation**:
+
 - [Plugin Development Guide](docs/PLUGINS.md) — How to create new plugins
 - [Plugin Template](docs/PLUGIN_TEMPLATE.md) — Template for new plugin docs
 - [Release Process](docs/RELEASE_PROCESS.md) — How to make releases
@@ -560,7 +573,6 @@ All user input must be validated:
 
 ---
 
-
 ## Downlinks
 
 Related documentation:
@@ -576,6 +588,7 @@ Related documentation:
 ## Questions?
 
 Refer to:
+
 - [README.md](README.md) — Project overview
 - [docs/PLUGINS.md](docs/PLUGINS.md) — Plugin development
 - [CONTRIBUTING.md](CONTRIBUTING.md) — Contribution process

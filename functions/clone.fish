@@ -4,7 +4,7 @@ function clone --description "Clone a git repository, optionally cd into it and 
         return 127
     end
 
-    argparse 'C/enter' 'h/help' -- $argv
+    argparse C/enter h/help -- $argv
     or return 2
 
     if set -q _flag_help; or test (count $argv) -eq 0
@@ -59,7 +59,7 @@ function clone --description "Clone a git repository, optionally cd into it and 
         echo "Error: editor '$editor' is not installed" >&2
         set -l detected (__clone_detect_editors)
         if test (count $detected) -gt 0
-            set -l choices "Skip"
+            set -l choices Skip
             for pair in $detected
                 set -l p (string split ":" $pair)
                 set -a choices "$p[1] ($p[2])"
@@ -68,7 +68,7 @@ function clone --description "Clone a git repository, optionally cd into it and 
             if test $status -ne 0
                 return 0
             end
-            if test -n "$selected"; and test "$selected" != "Skip"
+            if test -n "$selected"; and test "$selected" != Skip
                 set editor (string match -r '\((\S+)\)$' $selected)[2]
             else
                 set editor ""
@@ -86,7 +86,7 @@ function clone --description "Clone a git repository, optionally cd into it and 
     # Prompt for editor if not specified
     if test -z "$editor"
         set -l detected (__clone_detect_editors)
-        set -l choices "Skip"
+        set -l choices Skip
         for pair in $detected
             set -l p (string split ":" $pair)
             set -a choices "$p[1] ($p[2])"
@@ -98,7 +98,7 @@ function clone --description "Clone a git repository, optionally cd into it and 
             return 0
         end
 
-        if test -n "$selected"; and test "$selected" != "Skip"
+        if test -n "$selected"; and test "$selected" != Skip
             set editor (string match -r '\((\S+)\)$' $selected)[2]
         end
     end

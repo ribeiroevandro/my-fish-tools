@@ -1,11 +1,13 @@
 # 🐟 My Fish Tools
 
+[![CI](https://github.com/ribeiroevandro/my-fish-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/ribeiroevandro/my-fish-tools/actions/workflows/ci.yml)
+
 A collection of Fish shell plugins for everyday developer workflows.
 
-| Plugin | Command | Description | Docs |
-|--------|---------|-------------|------|
+| Plugin | Command     | Description                                              | Docs                                 |
+| ------ | ----------- | -------------------------------------------------------- | ------------------------------------ |
 | Runner | `r` / `run` | Run npm/yarn/pnpm/bun scripts with interactive selection | [📖 Details](docs/plugins/runner.md) |
-| Clone | `clone` | Interactive git clone with editor opening | [📖 Details](docs/plugins/clone.md) |
+| Clone  | `clone`     | Interactive git clone with editor opening                | [📖 Details](docs/plugins/clone.md)  |
 
 ## Installation
 
@@ -23,10 +25,10 @@ omf install https://github.com/ribeiroevandro/my-fish-tools
 
 ## Dependencies
 
-| Tool | Required by | Install |
-|------|-------------|---------|
+| Tool                                        | Required by                      | Install            |
+| ------------------------------------------- | -------------------------------- | ------------------ |
 | [gum](https://github.com/charmbracelet/gum) | Runner (interactive mode), Clone | `brew install gum` |
-| [jq](https://jqlang.github.io/jq/) | Runner | `brew install jq` |
+| [jq](https://jqlang.github.io/jq/)          | Runner                           | `brew install jq`  |
 
 > On Linux, replace `brew` with your system package manager (`apt`, `dnf`, `pacman`, etc).
 

@@ -9,6 +9,7 @@ Central directory for documentation of all plugins in the my-fish-tools package.
 Quick executor for npm/yarn/pnpm/bun scripts with interactive selection and TAB completion.
 
 **Features:**
+
 - Auto-detect package manager (npm, yarn, pnpm, bun)
 - Interactive script selection with gum
 - Direct script execution (non-interactive)
@@ -16,6 +17,7 @@ Quick executor for npm/yarn/pnpm/bun scripts with interactive selection and TAB 
 - Argument forwarding to scripts
 
 **Quick Start:**
+
 ```fish
 r                    # Interactive menu of scripts
 r dev                # Run specific script
@@ -23,10 +25,12 @@ r test -- --watch    # Pass arguments to script
 ```
 
 **Dependencies:**
+
 - `jq` (required)
 - `gum` (optional, for interactive mode)
 
 **Files:**
+
 - `functions/r.fish`
 - `functions/run.fish`
 - `functions/__runner_detect_runner.fish`
@@ -42,21 +46,25 @@ r test -- --watch    # Pass arguments to script
 Interactive git clone with optional directory navigation and editor opening.
 
 **Features:**
+
 - Interactive editor selection from detected editors
 - Auto-extract repository name from URL
 - Existing directory handling (offers git pull)
 - Optional auto-cd into cloned directory
 
 **Quick Start:**
+
 ```fish
 clone https://github.com/user/repo              # Interactive prompts
 clone git@github.com:user/repo.git -C code       # Clone, cd in, open VS Code
 ```
 
 **Dependencies:**
+
 - `gum` (required)
 
 **Files:**
+
 - `functions/clone.fish`
 - `functions/__clone_known_editors.fish`
 - `functions/__clone_detect_editors.fish`
@@ -97,9 +105,11 @@ List of files in the repository.
 ## Features
 
 ### Feature 1
+
 Description
 
 ### Feature 2
+
 Description
 
 ## Usage Examples
@@ -160,9 +170,11 @@ docs/
 ## Navigation
 
 **For Users:**
+
 - [Runner Plugin](./runner.md) - How to use the runner plugin
 
 **For Developers:**
+
 - [docs/PLUGINS.md](../PLUGINS.md) - Plugin development guide
 - [CONTRIBUTING.md](../../CONTRIBUTING.md) - Contribution guidelines
 - [.github/copilot-instructions.md](../../.github/copilot-instructions.md) - Development conventions
@@ -188,6 +200,7 @@ When adding a new plugin, refer to these documents in order:
 ## Questions?
 
 Refer to:
+
 - [Plugin Development Guide](../PLUGINS.md) - How to create plugins
 - [Runner Plugin](./runner.md) - Real-world example
 - [Contributing Guidelines](../../CONTRIBUTING.md) - How to contribute

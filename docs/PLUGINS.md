@@ -21,6 +21,7 @@ docs/
 ```
 
 **For documentation of existing plugins, refer to:**
+
 - [Runner Plugin](./plugins/runner.md) - Complete runner plugin documentation
 - [Plugins Index](./plugins/index.md) - List of all available plugins
 
@@ -31,6 +32,7 @@ docs/
 ### Step 1: Plan Your Plugin
 
 Before writing code, define:
+
 - **Name**: Short, lowercase, single word (e.g., "git", "docker", "test")
 - **Purpose**: What problem does it solve?
 - **Commands**: List of main functions
@@ -52,6 +54,7 @@ completions/
 ```
 
 **File naming rules**:
+
 - Use lowercase with underscores
 - Main function file: `PLUGIN_NAME.fish`
 - Helper file: `PLUGIN_NAME_helper.fish` or split into multiple files
@@ -62,6 +65,7 @@ completions/
 Follow the project's naming convention to avoid conflicts:
 
 **Main functions**:
+
 ```fish
 function my_plugin --description "Plugin description"
     ...
@@ -69,6 +73,7 @@ end
 ```
 
 **Helper functions**:
+
 ```fish
 function __my_plugin_helper_name
     ...
@@ -78,6 +83,7 @@ end
 Pattern: `__<plugin_name>_<helper_purpose>`
 
 Examples:
+
 - `__runner_list_scripts` - Helper in runner plugin
 - `__myutil_parse_config` - Helper in myutil plugin
 - `__git_format_branch` - Helper in git plugin
@@ -87,6 +93,7 @@ Examples:
 Structure your function with:
 
 1. **Dependencies check** at the start:
+
 ```fish
 type -q jq; or begin
     echo "Error: jq is required"
@@ -95,6 +102,7 @@ end
 ```
 
 2. **Input validation**:
+
 ```fish
 test -f package.json; or begin
     echo "package.json not found"
@@ -103,6 +111,7 @@ end
 ```
 
 3. **Clear error messages** to stderr:
+
 ```fish
 echo "Error: Description of what went wrong" >&2
 ```
@@ -114,11 +123,13 @@ echo "Error: Description of what went wrong" >&2
    - `127` - Missing dependency
 
 5. **Local variable scoping**:
+
 ```fish
 set -l local_var "value"   # Always use -l for local scope
 ```
 
 6. **Inline comments** for complex logic only:
+
 ```fish
 # Check if jq succeeded before proceeding
 if test $status -ne 0
@@ -134,7 +145,7 @@ If your plugin has commands that benefit from completion, create `completions/PL
 function __plugin_name_complete_items
     # Validate dependencies
     type -q gum; or return 1
-    
+
     # Return completion items
     echo "item1"
     echo "item2"
@@ -145,6 +156,7 @@ complete -c plugin_name -f -a "(__plugin_name_complete_items)" -d "Description"
 ```
 
 **Completion best practices**:
+
 - Guard with dependency checks (`type -q`)
 - Return items one per line
 - Include descriptions in `-d` flag
@@ -157,11 +169,12 @@ complete -c plugin_name -f -a "(__plugin_name_complete_items)" -d "Description"
    - Include overview, usage, requirements, exit codes, etc.
    - Provide troubleshooting section
 
-2. **Update docs/plugins/index.md** 
+2. **Update docs/plugins/index.md**
    - Add your plugin to the index
    - Include quick summary and link to full documentation
 
 3. **Update README.md** - Under "Contents" section:
+
 ```markdown
 - **plugin_name** - Brief description of what it does
 ```
@@ -174,6 +187,7 @@ Add your plugin to the "Current Plugins" section:
 
 ```markdown
 ### Plugin Name
+
 - **Description**: What it does
 - **Files**: functions/plugin_name.fish, completions/plugin_name.fish
 - **Documentation**: See [docs/plugins/plugin_name.md](../docs/plugins/plugin_name.md)
@@ -183,11 +197,13 @@ Add your plugin to the "Current Plugins" section:
 ### Step 8: Testing
 
 1. **Syntax check**:
+
 ```bash
 fish -n functions/plugin_name.fish
 ```
 
 2. **Manual testing**:
+
 ```bash
 fish
 source ~/.config/fish/config.fish
@@ -222,30 +238,35 @@ The template includes all sections needed for comprehensive plugin documentation
 ## Best Practices
 
 ### Code Quality
+
 - Keep functions focused on a single task
 - Use meaningful variable and function names
 - Add comments only where logic is non-obvious
 - Test error paths, not just happy paths
 
 ### Error Handling
+
 - Check dependencies early, with clear error messages
 - Use appropriate exit codes
 - Never silently fail
 - Provide actionable error messages
 
 ### Performance
+
 - Prefer built-in Fish features over external commands
 - Cache results if recomputing is expensive
 - Avoid unnecessary subshells
 - Profile with `time` if optimization needed
 
 ### Compatibility
+
 - Support Fish 3.1.0 and later
 - Test on multiple platforms (macOS, Linux)
 - Don't assume specific PATH order
 - Handle missing dependencies gracefully
 
 ### Documentation
+
 - Document dependencies clearly
 - Provide usage examples
 - Document exit codes
@@ -269,6 +290,7 @@ When updating an existing plugin:
 ## Questions?
 
 For more information:
+
 - See [CONTRIBUTING.md](../CONTRIBUTING.md) for development guidelines
 - See [README.md](../README.md) for installation and usage
 - Check existing plugins for examples
