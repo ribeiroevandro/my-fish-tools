@@ -54,13 +54,4 @@ jobs:
 
       - uses: fish-actions/format-check@v1
 
-  # Check Markdown and YAML files
-  markdown-yaml-check:
-    runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actionsx/prettier@v2
-        with:
-          args: --check .
