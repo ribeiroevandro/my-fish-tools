@@ -79,3 +79,17 @@ When generating a commit message from a diff or list of changes:
 gh pr create --title "feat(runner): add feature" --body "Description" --assignee @me
 gh pr merge <number> --squash --delete-branch   # Always squash merge
 ```
+
+### Planning & Issues
+
+After creating or updating a plan in `docs/plan/`, always create GitHub Issues to track implementation:
+
+1. Create one issue per phase/workstream defined in the plan
+2. Include a link back to the relevant plan section
+3. Add dependency references between issues (`Depende de: #N`)
+4. Assign labels (`enhancement`, `documentation`, `bug`) and assignee
+5. Use Conventional Commits type as issue title prefix (e.g., `feat(core):`, `test(core):`, `docs(core):`)
+
+```bash
+gh issue create --title "feat(scope): description" --label "enhancement" --assignee @me --body "..."
+```
