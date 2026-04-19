@@ -490,8 +490,11 @@ Nothing — each plugin declares its own dependencies:
 
 ## Downlinks
 
-Related documentation:
+**Module-Specific Guidance**:
+- [functions/AGENTS.md](functions/AGENTS.md) — Plugin and helper development
+- [completions/AGENTS.md](completions/AGENTS.md) — TAB completion development
 
+**Project Documentation**:
 - [Plugin Development Guide](docs/PLUGINS.md) — How to create new plugins
 - [Plugin Template](docs/PLUGIN_TEMPLATE.md) — Template for new plugin docs
 - [Release Process](docs/RELEASE_PROCESS.md) — How to make releases
