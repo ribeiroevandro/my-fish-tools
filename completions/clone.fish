@@ -9,4 +9,4 @@ function __clone_complete_editors
     end
 end
 
-complete -c clone -a "(__clone_complete_editors)" -d "Editor"
+complete -c clone -n 'not __fish_is_nth_token 1' -a "(__clone_complete_editors)" -d "Editor"
