@@ -557,6 +557,151 @@ All user input must be validated:
 
 ---
 
+## Padrão AGENTS.md
+
+Todo módulo/plugin deve ter um `AGENTS.md` próprio seguindo esta estrutura. Seções marcadas com **(obrigatório)** são necessárias; as demais são recomendadas para módulos maiores.
+
+### Estrutura de Módulo AGENTS.md
+
+```markdown
+# AGENTS.md — Runner Plugin
+
+**(Obrigatório)** Brief one-liner about what this module/plugin does.
+
+---
+
+## Overview **(obrigatório)**
+
+Explain the purpose, scope, and when/why to use this plugin. Who are the users? What problems does it solve?
+
+---
+
+## File Structure **(obrigatório)**
+
+List the main files and helpers:
+
+\`\`\`
+functions/
+├── runner.fish                    # Main entry point
+├── __runner_detect_runner.fish    # Helper: auto-detect package manager
+└── __runner_list_scripts.fish     # Helper: extract scripts from package.json
+
+completions/
+└── runner.fish                    # TAB completion
+
+docs/plugins/
+└── runner.md                      # User documentation
+\`\`\`
+
+---
+
+## Key Concepts **(obrigatório)**
+
+Explain the main ideas, design decisions, and patterns specific to this module.
+
+### Concept 1: Auto-Detection
+Explain how package manager detection works...
+
+### Concept 2: Interactive Mode
+Explain gum integration...
+
+---
+
+## Functions & Helpers
+
+### \`runner_main\` (or plugin entry point) **(obrigatório)**
+
+What it does, key parameters, return values.
+
+### \`__runner_detect_runner\`
+
+Helper purpose and usage.
+
+### \`__runner_list_scripts\`
+
+Helper purpose and usage.
+
+---
+
+## Error Handling
+
+List specific error codes and scenarios:
+- **127**: Missing dependency (jq, gum)
+- **2**: Invalid argument format
+- **1**: Runtime error
+
+---
+
+## Anti-patterns (for this module)
+
+- DON'T assume npm as default — always detect
+- DON'T fail if gum is missing in non-interactive mode
+- DON'T forward -- to yarn (not needed)
+
+---
+
+## Testing Checklist
+
+- [ ] Syntax check: \`fish -n functions/runner.fish\`
+- [ ] Load test: \`fish -c "source functions/runner.fish; runner --help"\`
+- [ ] pnpm projects: test with pnpm-lock.yaml
+- [ ] npm projects: test with package-lock.json
+- [ ] yarn projects: test with yarn.lock
+- [ ] bun projects: test with bun.lockb
+- [ ] Missing jq: verify error message (exit 127)
+- [ ] Missing gum: verify direct mode still works
+
+---
+
+## Dependencies
+
+- **jq** (required) — JSON parsing
+- **gum** (optional) — Interactive UI
+
+---
+
+## Future Improvements
+
+- [ ] Support for monorepo workspaces
+- [ ] Custom script filtering
+- [ ] Config file support
+
+---
+
+## Links
+
+- [Main AGENTS.md](../AGENTS.md) — Root project guidance
+- [docs/plugins/runner.md](../docs/plugins/runner.md) — User documentation
+- [docs/PLUGINS.md](../docs/PLUGINS.md) — Plugin development guide
+\`\`\`
+
+---
+
+## Creating a Module AGENTS.md
+
+### Step-by-step:
+
+1. **Create** `functions/AGENTS.md` (or `AGENTS.md` in plugin directory)
+2. **Add sections** from template above based on module complexity
+3. **Link from root** — Add entry in root AGENTS.md under "Downlinks"
+4. **Keep updated** — Update when adding features or changing behavior
+5. **Commit** with message: `docs(module-name): add AGENTS.md`
+
+### Example Commit:
+
+```bash
+git add functions/AGENTS.md
+git commit -m "docs(runner): add module AGENTS.md with guidance"
+```
+
+### When to Include Full Details:
+
+- **Obrigatório**: Always include Overview, File Structure, Key Concepts, Functions, Error Handling
+- **Recomendado**: Add if module has complex helpers or non-obvious patterns
+- **Opcional**: Skip if module is trivial (< 3 files)
+
+---
+
 ## Questions?
 
 Refer to:
