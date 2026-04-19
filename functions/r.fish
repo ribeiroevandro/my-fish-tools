@@ -1,29 +1,3 @@
-function __runner_list_scripts
-    test -f package.json; or return 1
-    set -l scripts (jq -r '(.scripts // {}) | keys[]' package.json 2>/dev/null)
-    
-    # Check if jq succeeded
-    if test $status -ne 0
-        echo "Error: Failed to parse package.json" >&2
-        return 2
-    end
-    
-    # Output scripts (empty if none)
-    test -n "$scripts"; and printf "%s\n" $scripts
-end
-
-function __runner_detect_runner
-    if test -f pnpm-lock.yaml
-        echo pnpm
-    else if test -f yarn.lock
-        echo yarn
-    else if test -f bun.lockb
-        echo bun
-    else
-        echo npm
-    end
-end
-
 function r --description "Run a script in the current project"
     # Check dependencies (jq is always needed)
     type -q jq; or begin

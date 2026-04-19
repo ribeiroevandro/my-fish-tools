@@ -35,6 +35,33 @@ r test -- --watch    # Pass arguments to script
 
 ---
 
+### [Clone](./clone.md) - `clone`
+
+Interactive git clone with optional directory navigation and editor opening.
+
+**Features:**
+- Interactive editor selection from detected editors
+- Auto-extract repository name from URL
+- Existing directory handling (offers git pull)
+- Optional auto-cd into cloned directory
+
+**Quick Start:**
+```fish
+clone https://github.com/user/repo              # Interactive prompts
+clone git@github.com:user/repo.git -C code       # Clone, cd in, open VS Code
+```
+
+**Dependencies:**
+- `gum` (required)
+
+**Files:**
+- `functions/clone.fish`
+- `completions/clone.fish`
+
+**Documentation:** [Clone Plugin Details](./clone.md)
+
+---
+
 ## Adding New Plugins
 
 When you create a new plugin:
