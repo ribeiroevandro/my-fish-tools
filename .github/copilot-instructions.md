@@ -23,7 +23,10 @@ The repo mirrors `~/.config/fish/` layout — a flat structure with no nested pl
 ### Current Plugins
 
 - **Runner** (`r`, `run`): Executes npm/yarn/pnpm/bun scripts. Auto-detects package manager from lockfile. Interactive mode uses `gum`; `jq` is always required. `run` is a thin wrapper calling `r`.
+  - Files: `r.fish`, `run.fish`, `__runner_detect_runner.fish`, `__runner_list_scripts.fish`
+  
 - **Clone** (`clone`): Interactive git clone with optional editor opening. Uses `gum` for UI. Messages are in Portuguese.
+  - Files: `clone.fish`, `__clone_known_editors.fish`, `__clone_detect_editors.fish`, `__clone_validate_url.fish`, `__clone_extract_repo_name.fish`
 
 ## Key Conventions
 
