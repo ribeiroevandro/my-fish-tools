@@ -33,16 +33,16 @@ echo "All tests passed!"
 
 ## Test Coverage
 
-| Module | Tests | Status |
-|--------|-------|--------|
-| `__clone_validate_url` | URL validation | ✅ Implemented |
-| `__clone_extract_repo_name` | Name extraction | ⏳ Pending |
-| `__clone_known_editors` | Editor listing | ⏳ Pending |
-| `__clone_detect_editors` | Editor detection | ⏳ Pending |
-| `clone` | Integration | ⏳ Pending |
-| `__runner_detect_runner` | Package manager detection | ⏳ Pending |
-| `__runner_list_scripts` | Script extraction | ⏳ Pending |
-| `r` | Integration | ⏳ Pending |
+| Module                      | Tests                     | Status         |
+| --------------------------- | ------------------------- | -------------- |
+| `__clone_validate_url`      | URL validation            | ✅ Implemented |
+| `__clone_extract_repo_name` | Name extraction           | ⏳ Pending     |
+| `__clone_known_editors`     | Editor listing            | ⏳ Pending     |
+| `__clone_detect_editors`    | Editor detection          | ⏳ Pending     |
+| `clone`                     | Integration               | ⏳ Pending     |
+| `__runner_detect_runner`    | Package manager detection | ⏳ Pending     |
+| `__runner_list_scripts`     | Script extraction         | ⏳ Pending     |
+| `r`                         | Integration               | ⏳ Pending     |
 
 ## Writing Tests
 

@@ -31,27 +31,33 @@ This is a template for documenting new plugins in my-fish-tools. Copy this file 
 ## Features
 
 ### [Feature Name 1]
+
 [Description of what this feature does]
 
 ### [Feature Name 2]
+
 [Description of what this feature does]
 
 ### [Feature Name 3]
+
 [Description of what this feature does]
 
 ## Usage Examples
 
 ### Basic Usage
+
 ```fish
 [command] [args]    # What this does
 ```
 
 ### Intermediate Usage
+
 ```fish
 [command] [options] [args]    # What this does
 ```
 
 ### Advanced Usage
+
 ```fish
 [command] --advanced-option    # What this does
 ```
@@ -59,30 +65,34 @@ This is a template for documenting new plugins in my-fish-tools. Copy this file 
 ## Requirements
 
 ### Always Required
+
 - **[Tool Name]** - [What it's used for]
   - Check: `[tool] --version`
   - Install: `[installation command]`
 
 ### Optional
+
 - **[Tool Name]** - [What it's used for, and when it's optional]
   - Check: `[tool] --version`
   - Install: `[installation command]`
 
 ### Project Requirements
+
 - [Any specific project structure or files needed]
 
 ## Exit Codes
 
-| Code | Meaning | When |
-|------|---------|------|
-| `0` | Success | [Description] |
-| `1` | User error | [Description] |
-| `2` | Parse error | [Description] |
+| Code  | Meaning            | When          |
+| ----- | ------------------ | ------------- |
+| `0`   | Success            | [Description] |
+| `1`   | User error         | [Description] |
+| `2`   | Parse error        | [Description] |
 | `127` | Missing dependency | [Description] |
 
 ## Helper Functions
 
 ### `__[plugin_name]_[helper_name]`
+
 [One-line description of what this helper does]
 
 **Usage:** [When and how this helper is used]
@@ -90,6 +100,7 @@ This is a template for documenting new plugins in my-fish-tools. Copy this file 
 **Returns:** [What this function returns]
 
 **Exit codes:**
+
 - `0` - Success
 - [Other codes] - [Meanings]
 
@@ -98,15 +109,19 @@ This is a template for documenting new plugins in my-fish-tools. Copy this file 
 ## Implementation Details
 
 ### [Major Component 1]
+
 [Explanation of how this component works, why these decisions were made]
 
 ### [Major Component 2]
+
 [Explanation of how this component works, why these decisions were made]
 
 ### Special Handling
+
 [Any special cases, edge cases, or non-obvious behavior]
 
 Example:
+
 ```fish
 # Explain why this special handling is needed
 if condition
@@ -117,16 +132,20 @@ end
 ## Troubleshooting
 
 ### Error Message 1
+
 ```
 Full error message here
 ```
+
 **Cause:** [What causes this error]  
 **Solution:** [How to fix it]
 
 ### Error Message 2
+
 ```
 Full error message here
 ```
+
 **Cause:** [What causes this error]  
 **Solution:** [How to fix it]
 
@@ -140,11 +159,13 @@ Full error message here
 ## Testing
 
 ### Syntax Check
+
 ```bash
 fish -n functions/[plugin_name].fish
 ```
 
 ### Manual Testing
+
 ```bash
 fish
 source ~/.config/fish/config.fish
@@ -160,6 +181,7 @@ source ~/.config/fish/config.fish
 ```
 
 ### Edge Cases to Test
+
 - [Edge case 1 - describe what to test]
 - [Edge case 2 - describe what to test]
 - [Edge case 3 - describe what to test]
@@ -188,9 +210,11 @@ source ~/.config/fish/config.fish
 [Any notes for future maintainers about this plugin's implementation or design decisions]
 
 ### Related Plugins
+
 [Links to any related or dependent plugins]
 
 ### Version History
+
 - `v1.0` - Initial release [date]
 
 ---
