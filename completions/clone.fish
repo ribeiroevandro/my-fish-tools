@@ -10,3 +10,6 @@ function __clone_complete_editors
 end
 
 complete -c clone -n 'not __fish_is_nth_token 1' -a "(__clone_complete_editors)" -d "Editor"
+# Show flags as hints when no URL provided yet
+complete -c clone -n '__fish_is_nth_token 1' -a "--help" -d "Show usage"
+complete -c clone -n '__fish_is_nth_token 1' -a "--enter" -d "Enter directory after cloning"
