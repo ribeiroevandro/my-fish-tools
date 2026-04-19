@@ -43,7 +43,8 @@ Use `--enter` / `-C` to automatically `cd` into the cloned directory, or respond
 clone https://github.com/user/repo              # Clone with interactive prompts
 clone git@github.com:user/repo.git my-folder     # Clone into custom folder
 clone https://github.com/user/repo code          # Clone and open in VS Code
-clone https://github.com/user/repo -C cursor     # Clone, cd in, and open in Cursor
+clone https://github.com/user/repo code my-custom-dir  # Clone, name folder, open in editor
+clone https://github.com/user/repo -C cursor    # Clone, cd in, then prompt for editor
 ```
 
 ## Requirements

@@ -23,6 +23,15 @@ end
 ```
    This enables Fish's native autoloading and avoids duplication in completions.
 
+   **Example: Clone plugin structure**
+   ```
+   functions/clone.fish                     # Main function
+   functions/__clone_known_editors.fish     # Helper 1 (one file per helper)
+   functions/__clone_detect_editors.fish    # Helper 2
+   functions/__clone_validate_url.fish      # Helper 3
+   functions/__clone_extract_repo_name.fish # Helper 4
+   ```
+
 5. Add completion in `completions/my_function.fish` if needed:
 ```fish
 complete -c my_function -f -d "Description"

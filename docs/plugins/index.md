@@ -29,6 +29,8 @@ r test -- --watch    # Pass arguments to script
 **Files:**
 - `functions/r.fish`
 - `functions/run.fish`
+- `functions/__runner_detect_runner.fish`
+- `functions/__runner_list_scripts.fish`
 - `completions/r.fish`
 
 **Documentation:** [Runner Plugin Details](./runner.md)
@@ -56,6 +58,10 @@ clone git@github.com:user/repo.git -C code       # Clone, cd in, open VS Code
 
 **Files:**
 - `functions/clone.fish`
+- `functions/__clone_known_editors.fish`
+- `functions/__clone_detect_editors.fish`
+- `functions/__clone_validate_url.fish`
+- `functions/__clone_extract_repo_name.fish`
 - `completions/clone.fish`
 
 **Documentation:** [Clone Plugin Details](./clone.md)
