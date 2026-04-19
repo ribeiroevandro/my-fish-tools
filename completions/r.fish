@@ -1,13 +1,10 @@
 function __runner_complete_with_gum
-    # Guard against missing dependencies
     type -q jq; or return 1
     type -q gum; or return 1
 
-    if test -f package.json
-        set scripts (jq -r '(.scripts // {}) | keys[]' package.json 2>/dev/null)
-        if set -q scripts[1]
-            printf "%s\n" $scripts | gum choose --header "Select script"
-        end
+    set -l scripts (__runner_list_scripts)
+    if test (count $scripts) -gt 0
+        printf "%s\n" $scripts | gum choose --header "Select script"
     end
 end
 

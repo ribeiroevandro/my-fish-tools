@@ -8,7 +8,9 @@ The runner plugin (`r` and `run`) simplifies running package manager scripts in 
 
 ## Location
 
-- `functions/r.fish` - Main runner function with script execution logic
+- `functions/r.fish` - Main runner function
+- `functions/__runner_list_scripts.fish` - Script extraction from package.json
+- `functions/__runner_detect_runner.fish` - Package manager detection
 - `functions/run.fish` - Convenience alias for `r`
 - `completions/r.fish` - TAB completion handler
 

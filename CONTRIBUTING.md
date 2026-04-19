@@ -13,12 +13,15 @@ function my_function --description "What this does"
 end
 ```
 
-4. If you have helper functions, use the repository convention: double underscore plus plugin prefix:
+4. If you have helper functions, use the repository convention: double underscore plus plugin prefix.
+   Each helper should be in its own autoload file under `functions/`:
 ```fish
-function __my_fish_tools_helper
+# functions/__my_plugin_helper.fish
+function __my_plugin_helper --description "Helper logic"
     # Helper logic
 end
 ```
+   This enables Fish's native autoloading and avoids duplication in completions.
 
 5. Add completion in `completions/my_function.fish` if needed:
 ```fish
