@@ -1,5 +1,7 @@
 # 🐟 My Fish Tools
 
+[![CI](https://github.com/ribeiroevandro/my-fish-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/ribeiroevandro/my-fish-tools/actions/workflows/ci.yml)
+
 A collection of Fish shell plugins for everyday developer workflows.
 
 | Plugin | Command     | Description                                              | Docs                                 |
