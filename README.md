@@ -84,6 +84,16 @@ my-fish-tools/
 
 - [Plugin Index](docs/plugins/index.md) — All available plugins
 - [Development Guide](docs/PLUGINS.md) — How to create new plugins
+- [Release Process](docs/RELEASE_PROCESS.md) — How to create releases
+- [Changelog](CHANGELOG.md) — Version history and release notes
+
+## Versioning
+
+This project uses [Semantic Versioning](https://semver.org/).
+
+Current version: **v1.0.0** ([Release Notes](https://github.com/ribeiroevandro/my-fish-tools/releases/tag/v1.0.0))
+
+For a complete version history, see the [CHANGELOG](CHANGELOG.md).
 
 ## Contributing
 
