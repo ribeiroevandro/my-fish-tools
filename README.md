@@ -2,10 +2,10 @@
 
 A collection of Fish shell plugins for everyday developer workflows.
 
-| Plugin | Command | Description |
-|--------|---------|-------------|
-| [Runner](#-runner) | `r` / `run` | Run npm/yarn/pnpm/bun scripts with interactive selection |
-| [Clone](#-clone) | `clone` | Interactive git clone with editor opening |
+| Plugin | Command | Description | Docs |
+|--------|---------|-------------|------|
+| Runner | `r` / `run` | Run npm/yarn/pnpm/bun scripts with interactive selection | [📖 Details](docs/plugins/runner.md) |
+| Clone | `clone` | Interactive git clone with editor opening | [📖 Details](docs/plugins/clone.md) |
 
 ## Installation
 
@@ -36,8 +36,6 @@ omf install https://github.com/ribeiroevandro/my-fish-tools
 
 Quick executor for project scripts. Auto-detects your package manager from the lockfile.
 
-### Usage
-
 ```fish
 r                     # Interactive: pick a script with gum
 r dev                 # Direct: run "dev" script
@@ -45,34 +43,13 @@ r test -- --watch     # Forward arguments to the script
 run build             # "run" is an alias for "r"
 ```
 
-### How it works
-
-1. Detects the package manager by checking for lockfiles (`pnpm-lock.yaml` → pnpm, `yarn.lock` → yarn, `bun.lockb` → bun, `package-lock.json` → npm)
-2. Reads scripts from `package.json` via `jq`
-3. Without arguments, shows an interactive menu via `gum choose`
-4. With arguments, runs the script directly — forwards extra args with `--` separator (except yarn)
-
-### TAB completion
-
-Scripts from `package.json` are available via TAB completion:
-
-```fish
-r de<TAB>    # → r dev
-```
-
-📖 [Full documentation](docs/plugins/runner.md)
+📖 [Full documentation](docs/plugins/runner.md) — How it works, TAB completion, exit codes, and more.
 
 ---
 
 ## 📋 Clone
 
 Interactive git clone with dynamic editor detection and optional directory navigation.
-
-### Usage
-
-```fish
-clone <url> [folder] [editor] [--enter|-C]
-```
 
 ```fish
 clone https://github.com/user/repo               # Interactive prompts
@@ -81,33 +58,7 @@ clone https://github.com/user/repo code           # Open in VS Code
 clone git@github.com:user/repo.git -C cursor      # Clone, cd in, open in Cursor
 ```
 
-### How it works
-
-1. Validates the URL (`git@` or `https://`)
-2. If no editor specified → shows installed editors via `gum choose`
-3. If editor specified but not installed → shows error and offers alternatives
-4. If directory already exists → offers `git pull` instead
-5. Asks to `cd` into the directory (or use `-C` to auto-enter)
-
-### Editor detection
-
-Automatically discovers installed editors by scanning:
-
-- **macOS**: `/Applications/*.app`
-- **Linux**: `/usr/share/applications/*.desktop`
-- **Cross-platform**: CLI tools in `$PATH`
-
-Currently recognized: VS Code, Cursor, Sublime Text, Zed, Fleet, Nova, IntelliJ IDEA, Vim, Neovim, Emacs, Nano, Atom.
-
-### TAB completion
-
-Installed editors and flags are available via TAB completion:
-
-```fish
-clone https://github.com/user/repo co<TAB>    # → code, cursor
-```
-
-📖 [Full documentation](docs/plugins/clone.md)
+📖 [Full documentation](docs/plugins/clone.md) — Editor detection, configuration, exit codes, and more.
 
 ---
 
@@ -132,8 +83,6 @@ my-fish-tools/
 ## Documentation
 
 - [Plugin Index](docs/plugins/index.md) — All available plugins
-- [Runner Plugin](docs/plugins/runner.md) — Detailed runner documentation
-- [Clone Plugin](docs/plugins/clone.md) — Detailed clone documentation
 - [Development Guide](docs/PLUGINS.md) — How to create new plugins
 
 ## Contributing
